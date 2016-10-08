@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>主页</title>
+		<link rel="stylesheet" type="text/css" href=""/>
+		<script src="../Public/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html{
+				width: 0;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			
+			.response-window-bg{
+				position: absolute;
+				min-width: 1200px;
+				width: 100%;
+				height: 100%;
+			}
+			.response-window-bg .inner{
+			    position: absolute;
+			    top: 50%;
+			    left: 50%;
+			}
+			.response-window-bg img{
+				position: absolute;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%; 
+			}
+		</style>
+	</head>
+	<body>
+		<div class="response-window-bg">
+			<div class="inner">
+				<img src="../Public/images/bg.jpg"/>	
+			</div>
+		</div>
+		<script type="text/javascript">
+			(function(){
+				var $bgOuter = $(".response-window-bg");
+				function bgResize(){
+					
+					var $bgInner = $bgOuter.find(".inner");
+
+					var h = $(window).height();
+					var w = $(window).width();
+			        $bgOuter.height(h);
+			        w=w>1200?w:1200;
+			        if(w/h<1920/1080){
+			         	$bgInner.height(h).css({width:1920/1080*h,margin:-.5*h+"px 0 0 "+-.5*1920/1080*h+"px"});
+			        }else{
+		        		console.log($(window).width())
+			          	$bgInner.width(w).css({height:w*1080/1920,margin:-.5*w*1080/1920+"px 0 0 "+-.5*w+"px"});
+			          	
+			        }
+				}
+				bgResize();
+				$(window).resize(
+					function(){
+						bgResize();
+					}
+				)
+			})();
+		</script>
+	</body>
+</html>
